@@ -1,0 +1,29 @@
+name: AEP Ingestion Health Monitor
+
+on:
+  schedule:
+    # Runs automatically in the cloud every 15 minutes
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Allows manual on-demand triggers anytime
+
+jobs:
+  check-aep:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Required Packages
+        run: pip install requests tabulate
+
+      - name: Execute Monitor Check
+        env:
+          AEP_CLIENT_SECRET: ${{ secrets.AEP_CLIENT_SECRET }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python aep_extractor.py
