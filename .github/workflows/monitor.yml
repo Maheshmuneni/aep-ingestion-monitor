@@ -2,7 +2,6 @@ name: AEP Ingestion Health Monitor
 
 on:
   schedule:
-    # Runs automatically in the cloud every 15 minutes
     - cron: '*/15 * * * *'
   workflow_dispatch: # Allows manual on-demand triggers anytime
 
