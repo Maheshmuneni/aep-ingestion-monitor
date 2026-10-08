@@ -2,7 +2,7 @@ name: AEP Ingestion Health Monitor
 
 on:
   schedule:
-    - cron: '*/11 * * * *'
+     - cron: '*/15 * * * *'
   workflow_dispatch: # Allows manual on-demand triggers anytime
 
 jobs:
